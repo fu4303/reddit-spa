@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom';
 
 export const CardStyle = styled(Link)`
   width: 40%;
+
   &:hover {
     text-decoration: none;
     color: initial;
   }
   .card {
     transition: box-shadow 0.3s;
+    margin: 20px 0;
 
     &:hover {
       box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
     }
-    .card-header {
+    .card-body {
       display: flex;
       justify-content: space-between;
       span {
