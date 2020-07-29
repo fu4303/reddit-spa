@@ -6,11 +6,13 @@ export interface Post {
   subreddit: string;
   ups: number;
   downs: number;
+  data: any;
 }
 
 export interface PostState {
   loading: boolean;
-  posts: null | Post;
+  posts: null | Post[];
+  subreddits: null | string[];
   error: null | string;
 }
 
@@ -26,7 +28,7 @@ export interface loadingAction {
 
 export interface getPostsSuccessAction {
   type: ActionTypes.GET_POSTS_SUCCESS;
-  payload: Post;
+  payload: Post[];
 }
 export interface getPostsFailureAction {
   type: ActionTypes.GET_POSTS_FAILURE;

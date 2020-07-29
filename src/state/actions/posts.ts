@@ -9,7 +9,7 @@ export const GET_POSTS_FAILURE = 'GET_POSTS_FAILURE';
 export const getPosts = () => async (dispatch: Dispatch<AnyAction>) => {
   dispatch({ type: LOADING });
   try {
-    const res = await axios.post(`${apiURL}`);
+    const res = await axios.get(`${apiURL}`);
     dispatch({ type: GET_POSTS_SUCCESS, payload: res.data.data.children });
     console.log(res.data.data.children)
     return res;

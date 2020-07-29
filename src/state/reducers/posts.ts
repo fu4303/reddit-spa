@@ -8,6 +8,7 @@ import {
 
 export const initialState: PostState = {
   posts: null,
+  subreddits: null,
   error: null,
   loading: false,
 };
@@ -24,6 +25,9 @@ const postsReducer = (state = initialState, action: PostActions) => {
         posts: {
           ...action.payload,
         },
+        subreddits: [
+          ...new Set(action.payload.map((subreddit) => subreddit.data?.subreddit))
+        ],
       };
 
     case GET_POSTS_FAILURE:
