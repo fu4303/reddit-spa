@@ -1,4 +1,5 @@
 export interface Post {
+  id: string;
   title: string;
   thumbnail: null | string;
   created_utc: number;
