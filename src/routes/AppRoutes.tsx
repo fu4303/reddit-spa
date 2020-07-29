@@ -4,7 +4,7 @@ import Home from '../view/Home';
 
 const AppRoutes: React.FC = () => (
   <Switch>
-    <Route path="/" component={Home} />
+    <Route exact path="/" component={Home} />
   </Switch>
 );
 

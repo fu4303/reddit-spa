@@ -22,11 +22,11 @@ const postsReducer = (state = initialState, action: PostActions) => {
       return {
         ...state,
         loading: false,
-        posts: {
-          ...action.payload,
-        },
+        posts: action.payload,
         subreddits: [
-          ...new Set(action.payload.map((subreddit) => subreddit.data?.subreddit))
+          ...new Set(
+            action.payload.map((subreddit) => subreddit.data?.subreddit)
+          ),
         ],
       };
 
