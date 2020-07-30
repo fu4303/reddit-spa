@@ -11,11 +11,18 @@ const FilterPane: React.FC<Props> = ({
   setDate,
   dateInput,
   setFilterType,
-  highestVote
+  highestVote,
+  range,
+  setRange,
 }) => {
   return (
     <FilterPaneStyle>
-      <RangeSlider highestVote={highestVote} />
+      <RangeSlider
+        highestVote={highestVote}
+        range={range}
+        setRange={setRange}
+        setFilterType={setFilterType}
+      />
       <DatePickerUI
         setDate={setDate}
         dateInput={dateInput}

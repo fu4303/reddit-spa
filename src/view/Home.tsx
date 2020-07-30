@@ -20,6 +20,8 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
   const currDate = dt.setDate(dt.getDate() - 1);
   const [dateInput, setDate] = useState(currDate);
 
+  const [range, setRange] = useState(0);
+
   useEffect(() => {
     getPosts();
   }, [getPosts]);
@@ -41,6 +43,9 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
             post.data.created_utc >=
             Math.floor(new Date(dateInput).getTime() / 1000).toString()
         );
+        break;
+      case 'range':
+        filteredPosts = posts.filter((post: Post) => post.data.ups >= range);
         break;
       default:
         filteredPosts = posts;
@@ -74,6 +79,8 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
               dateInput={dateInput}
               setFilterType={setFilterType}
               highestVote={highestVote}
+              range={range}
+              setRange={setRange}
             />
             {Object.entries(groupedPosts).length > 0 ? (
               Object.entries(groupedPosts).map(
