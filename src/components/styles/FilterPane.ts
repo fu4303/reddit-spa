@@ -2,11 +2,14 @@ import styled from 'styled-components';
 
 export const FilterPaneStyle = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-content: space-between;
 
-  .form-inline {
-    margin: 0 30px;
-    align-self: baseline;
+  .dater {
+    flex-direction: column;
+    margin: 10px 0;
+    align-items: flex-start;
+
     .react-datepicker__input-container {
       input[type='text'] {
         padding: 10px;
@@ -18,6 +21,7 @@ export const FilterPaneStyle = styled.div`
     }
   }
   .dropdown {
+    margin: 10px 0;
     outline: none;
     button:focus,
     button:active {
@@ -28,8 +32,34 @@ export const FilterPaneStyle = styled.div`
 
   .ranger {
     .form-group {
-      flex-flow: nowrap;
-      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: baseline;
+    .dater {
+      flex-direction: row;
+      margin: 0 30px;
+      align-items: baseline;
+    }
+
+    .ranger {
+      .form-group {
+        flex-flow: nowrap;
+        justify-content: space-around;
+        label {
+          margin: 0 5px;
+        }
+        input {
+          margin: 0 5px;
+        }
+        small {
+          margin: 0 5px;
+        }
+      }
     }
   }
 `;

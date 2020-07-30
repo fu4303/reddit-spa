@@ -11,7 +11,7 @@ const RangeSlider: React.FC<Props> = ({
   return (
     <Form inline className="ranger">
       <Form.Group>
-        <Form.Label htmlFor="rangeInput">Range</Form.Label>
+        <Form.Label htmlFor="rangeInput">Filter by upvotes</Form.Label>
 
         <Form.Control
           id="rangeInput"

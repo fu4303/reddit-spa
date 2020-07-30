@@ -16,7 +16,7 @@ const DatePickerUI: React.FC<Props> = ({
     setFilterType('date');
   };
   return (
-    <Form inline>
+    <Form inline className="dater">
       <Form.Label className="my-1 mr-2">Get Posts from: </Form.Label>
       <DatePicker
         selected={dateInput}

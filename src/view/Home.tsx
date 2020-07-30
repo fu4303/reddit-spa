@@ -27,7 +27,6 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
   }, [getPosts]);
 
   const highestVote = Math.max(...posts.map((post: Post) => post.data.ups));
-  console.log(highestVote);
 
   const filter = (type: string, posts: Post[]) => {
     let filteredPosts;
@@ -100,7 +99,9 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
                 )
               )
             ) : (
-              <h1 style={{ textAlign: 'center' }}>No posts</h1>
+              <h1 style={{ textAlign: 'center' }}>
+                No posts match theat criteria
+              </h1>
             )}
           </Container>
         )}
