@@ -24,6 +24,9 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
     getPosts();
   }, [getPosts]);
 
+  const highestVote = Math.max(...posts.map((post: Post) => post.data.ups));
+  console.log(highestVote);
+
   const filter = (type: string, posts: Post[]) => {
     let filteredPosts;
     switch (type) {
@@ -70,6 +73,7 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
               setDate={setDate}
               dateInput={dateInput}
               setFilterType={setFilterType}
+              highestVote={highestVote}
             />
             {Object.entries(groupedPosts).length > 0 ? (
               Object.entries(groupedPosts).map(
