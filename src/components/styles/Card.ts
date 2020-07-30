@@ -23,6 +23,9 @@ export const CardStyle = styled.a`
         width: 50px;
         margin: 20px;
       }
+      .card-body {
+        line-height: 1.5;
+      }
       .vote {
         font-weight: bold;
       }
