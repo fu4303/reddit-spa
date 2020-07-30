@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Dosis', sans-serif;
     font-weight: 500;
   }
   /* HTML5 display-role reset for older browsers */
