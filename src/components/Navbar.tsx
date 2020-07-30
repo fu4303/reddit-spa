@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Navbar, Button, Form, FormControl } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import SearchBar from './SearchBar';
 
 type Props = any;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navbar, Button, Form, FormControl } from 'react-bootstrap';
+import { Navbar, Form, FormControl } from 'react-bootstrap';
 
 type Props = any;
 const SearchBar: React.FC<Props> = ({ val, setVal }) => {
