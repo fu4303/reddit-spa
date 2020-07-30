@@ -7,8 +7,8 @@ import {
 } from '../actions/posts';
 
 export const initialState: PostState = {
-  posts: null,
-  subreddits: null,
+  posts: [],
+  subreddits: [],
   error: null,
   loading: false,
 };

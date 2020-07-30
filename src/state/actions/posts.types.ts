@@ -12,8 +12,8 @@ export interface Post {
 
 export interface PostState {
   loading: boolean;
-  posts: null | Post[];
-  subreddits: null | string[];
+  posts: Post[];
+  subreddits: string[];
   error: null | string;
 }
 

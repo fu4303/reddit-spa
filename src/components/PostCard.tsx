@@ -12,9 +12,9 @@ const PostCard: React.FC<Props> = ({ post }) => {
       <Card>
         <Card.Body>
           {title}
-          <Badge pill variant="info">
+          {/* <Badge pill variant="info">
             {subreddit}
-          </Badge>
+          </Badge> */}
         </Card.Body>
 
         <Card.Footer className="text-muted">

@@ -14,14 +14,13 @@ const SearchBar: React.FC<Props> = ({ val, setVal }) => {
       <Form inline>
         <FormControl
           type="text"
-          placeholder="Search"
+          placeholder="Search... "
           className="mr-sm-2"
           value={val}
           onChange={(e) => {
             setVal(e.target.value);
           }}
         />
-        <Button variant="outline-light">Search</Button>
       </Form>
     </Navbar.Collapse>
   );
