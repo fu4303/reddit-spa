@@ -35,15 +35,19 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
           </Loaders>
         ) : (
           <Container>
-            {Object.entries(groupedPosts).map(
-              ([group, posts]: any, idx: any) => (
-                <div key={idx}>
-                  <h1>{group.toUpperCase()}</h1>
-                  {posts.map((post: any, idx: any) => (
-                    <PostCard post={post} key={idx} />
-                  ))}
-                </div>
+            {Object.entries(groupedPosts).length > 0 ? (
+              Object.entries(groupedPosts).map(
+                ([group, posts]: any, idx: any) => (
+                  <div key={idx}>
+                    <h1>{group.toUpperCase()}</h1>
+                    {posts.map((post: any, idx: any) => (
+                      <PostCard post={post} key={idx} />
+                    ))}
+                  </div>
+                )
               )
+            ) : (
+              <h1 style={{ textAlign: 'center' }}>No posts</h1>
             )}
           </Container>
         )}
