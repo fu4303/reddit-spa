@@ -14,11 +14,17 @@ export const CardStyle = styled.a`
     &:hover {
       box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
     }
-    .card-body {
+    .row {
+      align-items: center;
       display: flex;
       justify-content: space-between;
-      span {
-        align-self: flex-end;
+      img {
+        height: 50px;
+        width: 50px;
+        margin: 20px;
+      }
+      .vote {
+        font-weight: bold;
       }
     }
     .card-footer {

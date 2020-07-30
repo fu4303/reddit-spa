@@ -81,6 +81,9 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
               range={range}
               setRange={setRange}
             />
+            
+            <hr style={{ marginBottom: '40px' }}/>
+
             {Object.entries(groupedPosts).length > 0 ? (
               Object.entries(groupedPosts).map(
                 ([group, posts]: any, idx: any) => (

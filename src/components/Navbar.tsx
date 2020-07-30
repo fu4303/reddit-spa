@@ -4,7 +4,12 @@ import { Navbar } from 'react-bootstrap';
 import SearchBar from './SearchBar';
 
 type Props = any;
-const Nav: React.FC<Props> = ({ filteredPosts, val, setVal, setFilterType }) => {
+const Nav: React.FC<Props> = ({
+  filteredPosts,
+  val,
+  setVal,
+  setFilterType,
+}) => {
   let history = useHistory();
 
   return (
@@ -16,12 +21,17 @@ const Nav: React.FC<Props> = ({ filteredPosts, val, setVal, setFilterType }) => 
     >
       <Navbar.Brand
         onClick={() => history.goBack()}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', fontWeight: 'bold' }}
       >
         Reddit Clone
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <SearchBar val={val} setVal={setVal} filteredPosts={filteredPosts} setFilterType={setFilterType} />
+      <SearchBar
+        val={val}
+        setVal={setVal}
+        filteredPosts={filteredPosts}
+        setFilterType={setFilterType}
+      />
     </Navbar>
   );
 };
