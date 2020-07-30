@@ -10,8 +10,6 @@ const PostCard: React.FC<Props> = ({ post }) => {
     data: { title, created_utc, url, author, thumbnail, ups },
   } = post;
 
-  console.log(thumbnail);
-
   return (
     <CardStyle target="_blank" href={url}>
       <Card>
