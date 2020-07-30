@@ -1,11 +1,23 @@
 import React from 'react';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
-import { DropDownStyle } from './styles/Dropdown';
+import { FilterPaneStyle } from './styles/FilterPane';
+import DatePickerUI from './DatePicker';
 
 type Props = any;
-const DropdownUI: React.FC<Props> = ({ sortPosts, setSort }) => {
+const FilterPane: React.FC<Props> = ({
+  sortPosts,
+  setSort,
+  setDate,
+  dateInput,
+  setFilterType,
+}) => {
   return (
-    <DropDownStyle>
+    <FilterPaneStyle>
+      <DatePickerUI
+        setDate={setDate}
+        dateInput={dateInput}
+        setFilterType={setFilterType}
+      />
       <DropdownButton
         title={sortPosts ? sortPosts : 'Sort posts by upvotes'}
         variant="outline-primary"
@@ -16,8 +28,8 @@ const DropdownUI: React.FC<Props> = ({ sortPosts, setSort }) => {
           </Dropdown.Item>
         ))}
       </DropdownButton>
-    </DropDownStyle>
+    </FilterPaneStyle>
   );
 };
 
-export default DropdownUI;
+export default FilterPane;
