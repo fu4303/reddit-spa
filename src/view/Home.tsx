@@ -8,10 +8,12 @@ import { getPosts } from '../state/actions/posts';
 import PostCard from '../components/PostCard';
 import { Post } from '../state/actions/posts.types';
 import { HomeStyle, Loaders, Footer } from './styles.ts/Home';
+import DropdownUI from '../components/Dropdown';
 
 type Props = ReturnType<typeof mapStateToProps> & any;
 const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
   const [val, setVal] = useState('');
+  const [sortPosts, setSort] = useState(null);
 
   useEffect(() => {
     getPosts();
@@ -35,14 +37,21 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
           </Loaders>
         ) : (
           <Container>
+            <DropdownUI sortPosts={sortPosts} setSort={setSort} />
             {Object.entries(groupedPosts).length > 0 ? (
               Object.entries(groupedPosts).map(
                 ([group, posts]: any, idx: any) => (
                   <div key={idx}>
                     <h1>{group.toUpperCase()}</h1>
-                    {posts.map((post: any, idx: any) => (
-                      <PostCard post={post} key={idx} />
-                    ))}
+                    {posts
+                      .sort((a: any, b: any) =>
+                        sortPosts === 'Ascending'
+                          ? a.data.ups - b.data.ups
+                          : b.data.ups - a.data.ups
+                      )
+                      .map((post: any, idx: any) => (
+                        <PostCard post={post} key={idx} />
+                      ))}
                   </div>
                 )
               )
@@ -55,7 +64,7 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
 
       <Footer>
         <Container>
-          {new Date().getFullYear()} &copy; Made with React Bootstrap
+          {new Date().getFullYear()} &copy; Designed with React Bootstrap
         </Container>
       </Footer>
     </>
