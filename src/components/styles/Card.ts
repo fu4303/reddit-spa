@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-export const CardStyle = styled(Link)`
+export const CardStyle = styled.a`
   width: 40%;
 
   &:hover {
