@@ -4,7 +4,7 @@ import { Navbar } from 'react-bootstrap';
 import SearchBar from './SearchBar';
 
 type Props = any;
-const Nav: React.FC<Props> = ({ filteredPosts, val, setVal }) => {
+const Nav: React.FC<Props> = ({ filteredPosts, val, setVal, setFilterType }) => {
   let history = useHistory();
 
   return (
@@ -21,7 +21,7 @@ const Nav: React.FC<Props> = ({ filteredPosts, val, setVal }) => {
         Reddit Clone
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <SearchBar val={val} setVal={setVal} filteredPosts={filteredPosts} />
+      <SearchBar val={val} setVal={setVal} filteredPosts={filteredPosts} setFilterType={setFilterType} />
     </Navbar>
   );
 };
