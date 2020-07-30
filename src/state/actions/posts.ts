@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { setupCache } from 'axios-cache-adapter';
 import localforage from 'localforage';
 import memoryDriver from 'localforage-memoryStorageDriver';
 
