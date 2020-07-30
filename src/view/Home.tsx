@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../store/config';
 
-import {
-  Container,
-  CardColumns,
-  Jumbotron,
-  Button,
-  Spinner,
-} from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import Nav from '../components/Navbar';
 import { getPosts } from '../state/actions/posts';
 import PostCard from '../components/PostCard';
 import { Post } from '../state/actions/posts.types';
-import { HomeStyle, Footer } from './styles.ts/Home';
+import { HomeStyle, Loaders, Footer } from './styles.ts/Home';
 
 type Props = ReturnType<typeof mapStateToProps> & any;
-const Home: React.FC<Props> = ({ getPosts, posts }) => {
+const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
   const [val, setVal] = useState('');
 
   useEffect(() => {
@@ -35,16 +29,24 @@ const Home: React.FC<Props> = ({ getPosts, posts }) => {
     <>
       <HomeStyle>
         <Nav val={val} setVal={setVal} />
-        <Container>
-          {Object.entries(groupedPosts).map(([group, posts]: any, idx: any) => (
-            <>
-              <h1>{group.toUpperCase()}</h1>
-              {posts.map((post: any, idx: any) => (
-                <PostCard post={post} key={idx} />
-              ))}
-            </>
-          ))}
-        </Container>
+        {loading ? (
+          <Loaders>
+            <Spinner animation="border" variant="primary" />
+          </Loaders>
+        ) : (
+          <Container>
+            {Object.entries(groupedPosts).map(
+              ([group, posts]: any, idx: any) => (
+                <div key={idx}>
+                  <h1>{group.toUpperCase()}</h1>
+                  {posts.map((post: any, idx: any) => (
+                    <PostCard post={post} key={idx} />
+                  ))}
+                </div>
+              )
+            )}
+          </Container>
+        )}
       </HomeStyle>
 
       <Footer>
