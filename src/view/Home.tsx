@@ -13,6 +13,7 @@ import Nav from '../components/Navbar';
 import { getPosts } from '../state/actions/posts';
 import PostCard from '../components/PostCard';
 import { Post } from '../state/actions/posts.types';
+import { HomeStyle, Footer } from './styles.ts/Home';
 
 type Props = ReturnType<typeof mapStateToProps> & any;
 const Home: React.FC<Props> = ({ getPosts, posts }) => {
@@ -29,21 +30,28 @@ const Home: React.FC<Props> = ({ getPosts, posts }) => {
     (acc[curr.data.subreddit] = acc[curr.data.subreddit] || []).push(curr);
     return acc;
   }, {});
-  console.log(groupedPosts);
 
   return (
     <>
-      <Nav val={val} setVal={setVal} />
-      <Container>
-        {Object.entries(groupedPosts).map(([group, posts]: any, idx: any) => (
-          <>
-            <h1>{group.toUpperCase()}</h1>
-            {posts.map((post: any, idx: any) => (
-              <PostCard post={post} key={idx} />
-            ))}
-          </>
-        ))}
-      </Container>
+      <HomeStyle>
+        <Nav val={val} setVal={setVal} />
+        <Container>
+          {Object.entries(groupedPosts).map(([group, posts]: any, idx: any) => (
+            <>
+              <h1>{group.toUpperCase()}</h1>
+              {posts.map((post: any, idx: any) => (
+                <PostCard post={post} key={idx} />
+              ))}
+            </>
+          ))}
+        </Container>
+      </HomeStyle>
+
+      <Footer>
+        <Container>
+          {new Date().getFullYear()} &copy; Made with React Bootstrap
+        </Container>
+      </Footer>
     </>
   );
 };
