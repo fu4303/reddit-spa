@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Navbar, Form, FormControl } from 'react-bootstrap';
 
 type Props = any;
-const SearchBar: React.FC<Props> = ({ val, setVal }) => {
+const SearchBar: React.FC<Props> = ({ val, setVal, setFilterType }) => {
   useEffect(() => {
     setVal(val);
   }, [val]);
@@ -19,6 +19,7 @@ const SearchBar: React.FC<Props> = ({ val, setVal }) => {
           value={val}
           onChange={(e) => {
             setVal(e.target.value);
+            setFilterType('search')
           }}
         />
       </Form>
