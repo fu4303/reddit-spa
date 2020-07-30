@@ -6,7 +6,7 @@ export const FilterPaneStyle = styled.div`
 
   .form-inline {
     margin: 0 30px;
-
+    align-self: baseline;
     .react-datepicker__input-container {
       input[type='text'] {
         padding: 10px;
@@ -23,6 +23,13 @@ export const FilterPaneStyle = styled.div`
     button:active {
       outline: none;
       box-shadow: none;
+    }
+  }
+
+  .ranger {
+    .form-group {
+      flex-flow: nowrap;
+      justify-content: space-between;
     }
   }
 `;

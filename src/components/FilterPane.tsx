@@ -2,6 +2,7 @@ import React from 'react';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import { FilterPaneStyle } from './styles/FilterPane';
 import DatePickerUI from './DatePicker';
+import RangeSlider from './RangeSlider';
 
 type Props = any;
 const FilterPane: React.FC<Props> = ({
@@ -10,9 +11,11 @@ const FilterPane: React.FC<Props> = ({
   setDate,
   dateInput,
   setFilterType,
+  highestVote
 }) => {
   return (
     <FilterPaneStyle>
+      <RangeSlider highestVote={highestVote} />
       <DatePickerUI
         setDate={setDate}
         dateInput={dateInput}
