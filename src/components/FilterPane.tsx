@@ -1,8 +1,8 @@
 import React from 'react';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
 import { FilterPaneStyle } from './styles/FilterPane';
 import DatePickerUI from './DatePicker';
 import RangeSlider from './RangeSlider';
+import Sorter from './Sorter';
 
 type Props = any;
 const FilterPane: React.FC<Props> = ({
@@ -28,17 +28,6 @@ const FilterPane: React.FC<Props> = ({
         dateInput={dateInput}
         setFilterType={setFilterType}
       />
-      <DropdownButton
-        title={sortPosts ? sortPosts : 'Sort posts by upvotes'}
-        variant="outline-primary"
-        className="form-inline"
-      >
-        {['Ascending', 'Descending'].map((item, idx) => (
-          <Dropdown.Item as="button" onClick={() => setSort(item)} key={idx}>
-            {item}
-          </Dropdown.Item>
-        ))}
-      </DropdownButton>
     </FilterPaneStyle>
   );
 };

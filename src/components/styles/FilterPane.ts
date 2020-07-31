@@ -62,4 +62,17 @@ export const FilterPaneStyle = styled.div`
       }
     }
   }
+  @media (min-width: 770px) and (max-width: 1024px) {
+    .dater {
+      flex-direction: row;
+      margin: 10px 15px;
+      align-items: baseline;
+
+      .react-datepicker__input-container {
+        input[type='text'] {
+          width: 4rem;
+        }
+      }
+    }
+  }
 `;

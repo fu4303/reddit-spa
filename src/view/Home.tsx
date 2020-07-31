@@ -9,6 +9,7 @@ import PostCard from '../components/PostCard';
 import { Post } from '../state/actions/posts.types';
 import { HomeStyle, Loaders, Footer } from './styles/Home';
 import FilterPane from '../components/FilterPane';
+import Sorter from '../components/Sorter';
 
 type Props = ReturnType<typeof mapStateToProps> & any;
 const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
@@ -16,7 +17,7 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
   const [sortPosts, setSort] = useState(null);
   const [filterType, setFilterType] = useState('');
 
-  const currDate = new Date()
+  const currDate = new Date();
   const [dateInput, setDate] = useState(currDate);
 
   const [range, setRange] = useState(0);
@@ -80,14 +81,17 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
               range={range}
               setRange={setRange}
             />
-            
-            <hr style={{ marginBottom: '40px' }}/>
+
+            <hr style={{ marginBottom: '40px' }} />
 
             {Object.entries(groupedPosts).length > 0 ? (
               Object.entries(groupedPosts).map(
                 ([group, posts]: any, idx: any) => (
                   <div key={idx}>
-                    <h1>{group.toUpperCase()}</h1>
+                    <h1 style={{margin: '10px 0'}}>{group.toUpperCase()}</h1>
+                    {posts.length > 1 ? (
+                      <Sorter sortPosts={sortPosts} setSort={setSort} />
+                    ) : null}
                     {posts
                       .sort((a: any, b: any) =>
                         sortPosts === 'Ascending'
