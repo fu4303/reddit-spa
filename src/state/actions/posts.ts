@@ -9,7 +9,7 @@ export const LOADING = 'LOADING';
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const GET_POSTS_FAILURE = 'GET_POSTS_FAILURE';
 
-async function configure() {
+const configure = async () => {
   await localforage.defineDriver(memoryDriver);
 
   const forageStore = localforage.createInstance({
@@ -29,13 +29,18 @@ async function configure() {
       store: forageStore,
     },
   });
-}
+};
 
 export const getPosts = () => async (dispatch: Dispatch<AnyAction>) => {
   const api = await configure();
   dispatch({ type: LOADING });
   try {
-    const res = await api.get(apiURL);
+    const res = await api.get(apiURL, {
+      cache: {
+        maxAge: 15 * 60 * 1000,
+        exclude: { query: false },
+      },
+    });
     dispatch({ type: GET_POSTS_SUCCESS, payload: res.data.data.children });
     return res;
   } catch (error) {
