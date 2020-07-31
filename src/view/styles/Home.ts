@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { Card } from 'react-bootstrap';
 
 export const HomeStyle = styled.div`
-  min-height: 100vh;
+  min-height: 93vh;
   display: flex;
   flex-direction: column;
   .container {
@@ -27,4 +28,20 @@ export const Loaders = styled.div`
   justify-content: center;
   align-items: center;
   height: 500px;
+`;
+
+export const CardStyle = styled(Card)`
+  transition: box-shadow 0.3s;
+  margin: 20px 0;
+  border-radius: 0.5rem;
+
+  &:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  }
+  .card-header {
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 `;

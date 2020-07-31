@@ -1,1 +1,1 @@
-export const apiURL = 'https://www.reddit.com/.json?limit=10';
+export const apiURL = 'https://www.reddit.com/.json?limit=12';

@@ -64,7 +64,6 @@ export const getPostsForSubreddit = (sr: string) => async (dispatch: Dispatch<An
       },
     });
     dispatch({ type: GET_POSTS_SUCCESS, payload: res.data.data.children });
-    console.log(res.data.data.children)
     return res;
   } catch (error) {
     dispatch({

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppState } from '../store/config';
@@ -12,8 +12,7 @@ import {
 } from 'react-bootstrap';
 
 import { getPosts } from '../state/actions/posts';
-import { Post } from '../state/actions/posts.types';
-import { HomeStyle, Loaders, Footer } from './styles/Home';
+import { HomeStyle, Loaders, Footer, CardStyle } from './styles/Home';
 
 type Props = ReturnType<typeof mapStateToProps> & any;
 const Landing: React.FC<Props> = ({ getPosts, subreddits, loading }) => {
@@ -26,7 +25,9 @@ const Landing: React.FC<Props> = ({ getPosts, subreddits, loading }) => {
       <HomeStyle>
         <Jumbotron>
           <Container>
-            <h3>Welcome to Reddit Mini Clone!</h3>
+            <h3 style={{ fontSize: '2rem', fontWeight: 'bolder' }}>
+              Welcome to Reddit Mini Clone!
+            </h3>
           </Container>
         </Jumbotron>
         {loading ? (
@@ -35,13 +36,14 @@ const Landing: React.FC<Props> = ({ getPosts, subreddits, loading }) => {
           </Loaders>
         ) : (
           <Container>
+            <div>What subreddit would you like to explore today?</div>
             <CardColumns>
               {subreddits.length > 0
-                ? subreddits.map((sub: string) => (
-                    <Link to={`/r/${sub}`}>
-                      <Card>
+                ? subreddits.map((sub: string, idx: number) => (
+                    <Link to={`/r/${sub}`} key={idx}>
+                      <CardStyle>
                         <Card.Header>{sub}</Card.Header>
-                      </Card>
+                      </CardStyle>
                     </Link>
                   ))
                 : null}
