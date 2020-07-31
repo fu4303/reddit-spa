@@ -12,7 +12,7 @@ export const FilterPaneStyle = styled.div`
 
     .react-datepicker__input-container {
       input[type='text'] {
-        padding: 10px;
+        padding: 9px;
         font-size: 0.9rem;
         color: #007bff;
         border: 1px solid #007bff;
@@ -42,7 +42,7 @@ export const FilterPaneStyle = styled.div`
     align-items: baseline;
     .dater {
       flex-direction: row;
-      margin: 0 30px;
+      margin: 10px 30px;
       align-items: baseline;
     }
 
