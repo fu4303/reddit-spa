@@ -51,3 +51,26 @@ export const getPosts = () => async (dispatch: Dispatch<AnyAction>) => {
     return error;
   }
 };
+
+
+export const getPostsForSubreddit = (sr: string) => async (dispatch: Dispatch<AnyAction>) => {
+  const api = await configure();
+  dispatch({ type: LOADING });
+  try {
+    const res = await api.get(`https://www.reddit.com/r/${sr}/controversial.json?limit=10&t=year`, {
+      cache: {
+        maxAge: 15 * 60 * 1000,
+        exclude: { query: false },
+      },
+    });
+    dispatch({ type: GET_POSTS_SUCCESS, payload: res.data.data.children });
+    console.log(res.data.data.children)
+    return res;
+  } catch (error) {
+    dispatch({
+      type: GET_POSTS_FAILURE,
+      payload: error.response?.data.error,
+    });
+    return error;
+  }
+};
