@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Card } from 'react-bootstrap';
 
 export const HomeStyle = styled.div`
-  min-height: 93vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   .container {
