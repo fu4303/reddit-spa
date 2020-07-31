@@ -16,8 +16,7 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
   const [sortPosts, setSort] = useState(null);
   const [filterType, setFilterType] = useState('');
 
-  const dt = new Date(Date.now());
-  const currDate = dt.setDate(dt.getDate() - 1);
+  const currDate = new Date()
   const [dateInput, setDate] = useState(currDate);
 
   const [range, setRange] = useState(0);
