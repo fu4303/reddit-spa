@@ -55,13 +55,7 @@ const Home: React.FC<Props> = ({ getPostsForSubreddit, posts, loading }) => {
     return filteredPosts;
   };
 
-  const groupedPosts = filter(filterType, posts).reduce(
-    (acc: any, curr: any) => {
-      (acc[curr.data.subreddit] = acc[curr.data.subreddit] || []).push(curr);
-      return acc;
-    },
-    {}
-  );
+  const groupedPosts = filter(filterType, posts);
 
   return (
     <>
@@ -85,27 +79,22 @@ const Home: React.FC<Props> = ({ getPostsForSubreddit, posts, loading }) => {
             />
 
             <hr style={{ marginBottom: '40px' }} />
+            <h1 style={{ margin: '10px 0' }}>{subreddit.toUpperCase()}</h1>
 
-            {Object.entries(groupedPosts).length > 0 ? (
-              Object.entries(groupedPosts).map(
-                ([group, posts]: any, idx: any) => (
-                  <div key={idx}>
-                    <h1 style={{ margin: '10px 0' }}>{group.toUpperCase()}</h1>
-                    {posts.length > 1 ? (
-                      <Sorter sortPosts={sortPosts} setSort={setSort} />
-                    ) : null}
-                    {posts
-                      .sort((a: any, b: any) =>
-                        sortPosts === 'Ascending'
-                          ? a.data.ups - b.data.ups
-                          : b.data.ups - a.data.ups
-                      )
-                      .map((post: any, idx: any) => (
-                        <PostCard post={post} key={idx} />
-                      ))}
-                  </div>
-                )
-              )
+            <Sorter sortPosts={sortPosts} setSort={setSort} />
+
+            {groupedPosts.length > 0 ? (
+              <div>
+                {groupedPosts
+                  .sort((a: any, b: any) =>
+                    sortPosts === 'Ascending'
+                      ? a.data.ups - b.data.ups
+                      : b.data.ups - a.data.ups
+                  )
+                  .map((post: any, idx: any) => (
+                    <PostCard post={post} key={idx} />
+                  ))}
+              </div>
             ) : (
               <h1 style={{ textAlign: 'center' }}>
                 No posts match theat criteria

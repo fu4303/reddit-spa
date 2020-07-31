@@ -7,11 +7,15 @@ import img from '../assets/reddit.png';
 type Props = any;
 const PostCard: React.FC<Props> = ({ post }) => {
   const {
-    data: { title, created_utc, url, author, thumbnail, ups },
+    data: { title, created_utc, permalink, author, thumbnail, ups },
   } = post;
 
   return (
-    <CardStyle target="_blank" href={url}>
+    <CardStyle
+      target="_blank"
+      href={`https://www.reddit.com${permalink}`}
+      rel="noopener noreferrer"
+    >
       <Card>
         <Row>
           <Col xs={2} md={2}>
