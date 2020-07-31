@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { AppState } from '../store/config';
 
 import { Container, Spinner } from 'react-bootstrap';
 import Nav from '../components/Navbar';
-import { getPosts } from '../state/actions/posts';
+import { getPostsForSubreddit } from '../state/actions/posts';
 import PostCard from '../components/PostCard';
 import { Post } from '../state/actions/posts.types';
 import { HomeStyle, Loaders, Footer } from './styles/Home';
@@ -12,7 +13,8 @@ import FilterPane from '../components/FilterPane';
 import Sorter from '../components/Sorter';
 
 type Props = ReturnType<typeof mapStateToProps> & any;
-const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
+const Home: React.FC<Props> = ({ getPostsForSubreddit, posts, loading }) => {
+  const { subreddit } = useParams();
   const [val, setVal] = useState('');
   const [sortPosts, setSort] = useState(null);
   const [filterType, setFilterType] = useState('');
@@ -23,8 +25,8 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
   const [range, setRange] = useState(0);
 
   useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+    getPostsForSubreddit(subreddit);
+  }, [getPostsForSubreddit, subreddit]);
 
   const highestVote = Math.max(...posts.map((post: Post) => post.data.ups));
 
@@ -88,7 +90,7 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
               Object.entries(groupedPosts).map(
                 ([group, posts]: any, idx: any) => (
                   <div key={idx}>
-                    <h1 style={{margin: '10px 0'}}>{group.toUpperCase()}</h1>
+                    <h1 style={{ margin: '10px 0' }}>{group.toUpperCase()}</h1>
                     {posts.length > 1 ? (
                       <Sorter sortPosts={sortPosts} setSort={setSort} />
                     ) : null}
@@ -128,4 +130,4 @@ const mapStateToProps = ({ postsReducer }: AppState) => ({
   subreddits: postsReducer.subreddits,
 });
 
-export default connect(mapStateToProps, { getPosts })(Home);
+export default connect(mapStateToProps, { getPostsForSubreddit })(Home);

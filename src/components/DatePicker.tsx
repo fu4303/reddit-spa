@@ -21,11 +21,9 @@ const DatePickerUI: React.FC<Props> = ({
       <DatePicker
         selected={dateInput}
         onChange={handleChange}
-        showTimeSelect
-        showTimeSelectOnly
         maxDate={currDate}
         timeCaption="Time"
-        dateFormat="h:mm aa"
+        dateFormat="MMMM d, yyyy"
         closeOnScroll={true}
       />
     </Form>
