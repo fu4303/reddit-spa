@@ -12,7 +12,7 @@ export const FilterPaneStyle = styled.div`
 
     .react-datepicker__input-container {
       input[type='text'] {
-        padding: 10px;
+        padding: 9px;
         font-size: 0.9rem;
         color: #007bff;
         border: 1px solid #007bff;
@@ -42,7 +42,7 @@ export const FilterPaneStyle = styled.div`
     align-items: baseline;
     .dater {
       flex-direction: row;
-      margin: 0 30px;
+      margin: 10px 30px;
       align-items: baseline;
     }
 
@@ -58,6 +58,19 @@ export const FilterPaneStyle = styled.div`
         }
         small {
           margin: 0 5px;
+        }
+      }
+    }
+  }
+  @media (min-width: 770px) and (max-width: 1024px) {
+    .dater {
+      flex-direction: row;
+      margin: 10px 15px;
+      align-items: baseline;
+
+      .react-datepicker__input-container {
+        input[type='text'] {
+          width: 4rem;
         }
       }
     }

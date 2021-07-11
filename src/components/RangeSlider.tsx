@@ -19,7 +19,7 @@ const RangeSlider: React.FC<Props> = ({
           custom
           min={0}
           max={highestVote}
-          step="1000"
+          step="10"
           value={range}
           onChange={(e) => {
             setFilterType('range');

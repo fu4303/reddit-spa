@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { AppState } from '../store/config';
 
 import { Container, Spinner } from 'react-bootstrap';
 import Nav from '../components/Navbar';
-import { getPosts } from '../state/actions/posts';
+import { getPostsForSubreddit } from '../state/actions/posts';
 import PostCard from '../components/PostCard';
 import { Post } from '../state/actions/posts.types';
 import { HomeStyle, Loaders, Footer } from './styles/Home';
 import FilterPane from '../components/FilterPane';
+import Sorter from '../components/Sorter';
 
 type Props = ReturnType<typeof mapStateToProps> & any;
-const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
+const Home: React.FC<Props> = ({ getPostsForSubreddit, posts, loading }) => {
+  const { subreddit } = useParams();
   const [val, setVal] = useState('');
   const [sortPosts, setSort] = useState(null);
   const [filterType, setFilterType] = useState('');
 
-  const dt = new Date(Date.now());
-  const currDate = dt.setDate(dt.getDate() - 1);
+  const currDate = new Date();
   const [dateInput, setDate] = useState(currDate);
 
   const [range, setRange] = useState(0);
 
   useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+    getPostsForSubreddit(subreddit);
+  }, [getPostsForSubreddit, subreddit]);
 
   const highestVote = Math.max(...posts.map((post: Post) => post.data.ups));
 
@@ -53,13 +55,7 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
     return filteredPosts;
   };
 
-  const groupedPosts = filter(filterType, posts).reduce(
-    (acc: any, curr: any) => {
-      (acc[curr.data.subreddit] = acc[curr.data.subreddit] || []).push(curr);
-      return acc;
-    },
-    {}
-  );
+  const groupedPosts = filter(filterType, posts);
 
   return (
     <>
@@ -81,26 +77,24 @@ const Home: React.FC<Props> = ({ getPosts, posts, loading }) => {
               range={range}
               setRange={setRange}
             />
-            
-            <hr style={{ marginBottom: '40px' }}/>
 
-            {Object.entries(groupedPosts).length > 0 ? (
-              Object.entries(groupedPosts).map(
-                ([group, posts]: any, idx: any) => (
-                  <div key={idx}>
-                    <h1>{group.toUpperCase()}</h1>
-                    {posts
-                      .sort((a: any, b: any) =>
-                        sortPosts === 'Ascending'
-                          ? a.data.ups - b.data.ups
-                          : b.data.ups - a.data.ups
-                      )
-                      .map((post: any, idx: any) => (
-                        <PostCard post={post} key={idx} />
-                      ))}
-                  </div>
-                )
-              )
+            <hr style={{ marginBottom: '40px' }} />
+            <h1 style={{ margin: '10px 0' }}>{subreddit.toUpperCase()}</h1>
+
+            <Sorter sortPosts={sortPosts} setSort={setSort} />
+
+            {groupedPosts.length > 0 ? (
+              <div>
+                {groupedPosts
+                  .sort((a: any, b: any) =>
+                    sortPosts === 'Ascending'
+                      ? a.data.ups - b.data.ups
+                      : b.data.ups - a.data.ups
+                  )
+                  .map((post: any, idx: any) => (
+                    <PostCard post={post} key={idx} />
+                  ))}
+              </div>
             ) : (
               <h1 style={{ textAlign: 'center' }}>
                 No posts match theat criteria
@@ -125,4 +119,4 @@ const mapStateToProps = ({ postsReducer }: AppState) => ({
   subreddits: postsReducer.subreddits,
 });
 
-export default connect(mapStateToProps, { getPosts })(Home);
+export default connect(mapStateToProps, { getPostsForSubreddit })(Home);

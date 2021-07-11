@@ -5,7 +5,7 @@ type Props = any;
 const SearchBar: React.FC<Props> = ({ val, setVal, setFilterType }) => {
   useEffect(() => {
     setVal(val);
-  }, [val]);
+  }, [val, setVal]);
   return (
     <Navbar.Collapse
       id="basic-navbar-nav"
@@ -19,7 +19,7 @@ const SearchBar: React.FC<Props> = ({ val, setVal, setFilterType }) => {
           value={val}
           onChange={(e) => {
             setVal(e.target.value);
-            setFilterType('search')
+            setFilterType('search');
           }}
         />
       </Form>
